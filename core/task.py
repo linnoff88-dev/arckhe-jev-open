@@ -1,0 +1,67 @@
+"""Carrega a ficha de uma tarefa e valida registros. Independe de domínio."""
+from pathlib import Path
+import json
+import yaml
+
+ROOT = Path(__file__).resolve().parents[1]
+
+
+def load_ficha(tarefa):
+    path = ROOT / 'tasks' / tarefa / 'ficha.yaml'
+    ficha = yaml.safe_load(path.read_text())
+    ids = [q['id'] for q in ficha['perguntas']]
+    if len(ids) != len(set(ids)):
+        raise ValueError('ids de pergunta repetidos na ficha')
+    rotulos = ficha['rotulos']
+    for q in ficha['perguntas']:
+        h = q['hipoteses']
+        if set(h) != set(rotulos):
+            raise ValueError(f"{q['id']}: hipoteses precisam cobrir exatamente {rotulos}")
+        if len(set(h.values())) != len(h):
+            raise ValueError(f"{q['id']}: hipoteses repetidas")
+        if not q.get('afirmacao'):
+            raise ValueError(f"{q['id']}: falta 'afirmacao' (modo hipótese única)")
+    if not ficha.get('fila_revisao'):
+        raise ValueError("ficha precisa de 'fila_revisao' (destino do que o modelo não observa)")
+    rede = ficha.get('rede')
+    if not isinstance(rede, dict) or not rede.get('modulo') or rede.get('pergunta') not in ids:
+        raise ValueError(f"ficha precisa de 'rede: {{modulo, pergunta}}' com pergunta entre {ids}")
+    metas = ficha.get('metas', {})
+    faltam = [k for k in (f"{rede['pergunta']}_perdidos_teste", 'macro_f1_dev_min', 'ood_macro_f1_min', 'queda_ood_max_pp') if k not in metas]
+    if faltam:
+        raise ValueError(f'metas da ficha sem {faltam}')
+    return ficha
+
+
+def load_records(path, ficha):
+    """Registro: {id, grupo, fonte, sintetico, texto, respostas: {pergunta: rotulo}}."""
+    ids, out = set(), []
+    perguntas = [q['id'] for q in ficha['perguntas']]
+    for n, line in enumerate(Path(path).read_text().splitlines(), 1):
+        if not line.strip():
+            continue
+        r = json.loads(line)
+        if not isinstance(r.get('id'), str) or r['id'] in ids:
+            raise ValueError(f'linha {n}: id ausente ou repetido')
+        ids.add(r['id'])
+        for campo in ('grupo', 'fonte', 'texto'):
+            if not isinstance(r.get(campo), str) or not r[campo].strip():
+                raise ValueError(f"{r['id']}: falta '{campo}'")
+        if not isinstance(r.get('sintetico'), bool):
+            raise ValueError(f"{r['id']}: 'sintetico' precisa ser true/false")
+        resp = r.get('respostas', {})
+        if set(resp) != set(perguntas):
+            raise ValueError(f"{r['id']}: respostas precisam cobrir {perguntas}")
+        for q, v in resp.items():
+            if v not in ficha['rotulos']:
+                raise ValueError(f"{r['id']}.{q}: rótulo inválido {v!r}")
+        out.append(r)
+    if not out:
+        raise ValueError('arquivo vazio')
+    return out
+
+
+def exige_uso_em_dados(path, ficha):
+    """Barra arquivos marcados em `somente_teste` na ficha antes de usá-los como dados (treino/dev/teste/OOD)."""
+    if Path(path).name in ficha.get('somente_teste', []):
+        raise ValueError(f'{Path(path).name} é somente teste (ficha: somente_teste); não entra em treino, dev, teste final nem OOD')
