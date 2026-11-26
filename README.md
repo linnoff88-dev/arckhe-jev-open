@@ -6,7 +6,7 @@
 
 ## ê°Å¸ââ Guia de uso
 
-Guia completo (landing + passo a passo): **https://inematds.github.io/jev-open/guia/**
+Guia completo (landing + passo a passo): **https://linnoff88-dev.github.io/arckhe-/guia/**
 
 Especialista classificador **local e open-source** no estilo Jev: o modelo lêÂª um documento e responde perguntas fixas com 3 respostas (atende / contraria / sem evidêÂªncia), e o cêÂ³digo aplica as regras de negêÂ³cio. A incerteza vai para revisêÂ£o.
 

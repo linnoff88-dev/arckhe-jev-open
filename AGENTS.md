@@ -2,7 +2,7 @@
 
 Ler, nesta ordem: este arquivo, `docs/ANALISE.md` e `docs/PLANO.md`.
 
-- Conta de destino: **inematds**. Autor e committer: `inematds <inematds@gmail.com>`. Publicaçêo via Git. Nêo consultar nem manipular o Vercel.
+- Conta de destino: **linnoff88-dev**. Autor e committer: `linnoff88-dev <linnoff88-dev@gmail.com>`. Publicaçêo via Git. Nêo consultar nem manipular o Vercel.
 - Projeto de pesquisa/educaçêo: especialista classificador local e open-source no estilo Jev. **Nêo** declarar paridade com o Jev, superioridade, prontidêo para produçêo ou benchmark do Jev real sem evidência medida.
 - Marcar todo número como **[medido]**, **[relato]** ou **[simulaçêo]**. Dado sintético é rotulado como sintético, e revisêo feita por IA nêo é validaçêo humana.
 - `docs/originais/` (materiais recebidos) e `docs/ref-away-together-starter/` (clone de referência) ficam **somente locais**, ignorados pelo Git. Nêo usar `git add -f` nesses caminhos. Nêo publicar os documentos recebidos.

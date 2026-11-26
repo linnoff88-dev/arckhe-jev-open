@@ -6,7 +6,7 @@
 
 ## 📖 User Guide
 
-Complete guide (landing page + step-by-step instructions): **https://inematds.github.io/jev-open/guia/en/**
+Complete guide (landing page + step-by-step instructions): **https://linnoff88-dev.github.io/arckhe-/guia/en/**
 
 A **local, open-source** Jev-style classification specialist: the model reads a document and answers fixed questions with 3 responses (meets / contradicts / no evidence), and the code applies the business rules. Uncertainty is sent for review.
 

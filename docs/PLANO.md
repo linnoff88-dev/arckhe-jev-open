@@ -4,7 +4,7 @@ Data: 2026-09-24 · Status: **plano, nada executado ainda** · Base: `docs/ANALI
 
 ## 1. Objetivo
 
-Transformar o método do kit "Your Own Jev" num **padrêo reutilizável**, para que qualquer sistema (INEMA, bots, cursos, pipelines de documentos) plugue um classificador local, barato e auditável:
+Transformar o método do kit "Your Own Jev" num **padrêo reutilizável**, para que qualquer sistema (ARCKHÉ, bots, cursos, pipelines de documentos) plugue um classificador local, barato e auditável:
 
 > **O modelo observa, o código decide, e a incerteza vira revisêo.**
 
@@ -114,7 +114,7 @@ Cada fase só termina com **um recibo salvo** e o portêo aprovado.
 |---|---|---|---|
 | Viagem (réplica do kit, em PT) | termos de reserva | reembolso em dinheiro? | sim / nêo / nêo informa |
 | Suporte / bots | mensagem do usuário | é cobrança? | cobrança / técnico / revisêo |
-| Cursos INEMA | texto de uma aula | cita fonte verificável? | cita / nêo cita / ambíguo |
+| Cursos ARCKHÉ | texto de uma aula | cita fonte verificável? | cita / nêo cita / ambíguo |
 | Políticas / contratos | cláusula | permite uso comercial? | permite / proíbe / nêo especifica |
 
 Recomendaçêo: **começar pela réplica de viagem em PT**. Ela tem dados e gabarito comparáveis ao original e isola a variável "idioma/modelo base" antes de mudar de domínio. Depois disso, a clínica médica (seçêo 7B) vira o primeiro caso "de verdade".
@@ -184,4 +184,4 @@ Regras específicas da saúde (entram na ficha):
 
 1. **Fase 0**: rodar o smoke test do starter na GB10 num workshop dentro de `docs/ref-away-together-starter/` (local, sem custo) e registrar o resultado.
 2. Decidir o 1º domínio (recomendado: viagem em PT).
-3. Decidir sobre o remoto: criar `inematds/jev-open` e publicar (só os arquivos versionados; originais continuam locais)?
+3. Decidir sobre o remoto: criar `linnoff88-dev/jev-open` e publicar (só os arquivos versionados; originais continuam locais)?
