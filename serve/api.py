@@ -1,8 +1,8 @@
 """API mínima em CPU: POST /classify?tarefa=<t>  corpo {"texto": "..."}.
 
 O modelo observa (rótulo por pergunta), o CÓDIGO da tarefa decide a fila (tasks/<t>/regras.py),
-e toda dúvida vira revisão humana: texto vazio, longo demais ou erro interno nunca é descartado.
-Resposta inspecionável: observações com probabilidades, fila, motivos e versão do pacote.
+e toda dúvida vira revisêo humana: texto vazio, longo demais ou erro interno nunca é descartado.
+Resposta inspecionável: observações com probabilidades, fila, motivos e versêo do pacote.
 
 uso: JEV_PACOTES=/pacotes python -m serve.api --porta 8080 --tarefas advocacia-atendimento clinica-triagem
      (cada tarefa em $JEV_PACOTES/<tarefa>/)
@@ -31,19 +31,19 @@ def carrega_tarefa(tarefa, pacotes, threads):
 
 
 def revisao(ficha, motivo):
-    """Sem observação confiável: vai para atendimento humano, com o motivo explícito."""
+    """Sem observaçêo confiável: vai para atendimento humano, com o motivo explícito."""
     fila = ficha['fila_revisao']
     return {'prioridade': fila, 'filas': [fila], 'motivos': [motivo]}
 
 
 def classifica(t, texto):
     if not texto.strip():
-        return {'observacoes': None, 'decisao': revisao(t['ficha'], 'texto vazio -> revisão humana')}
+        return {'observacoes': None, 'decisao': revisao(t['ficha'], 'texto vazio -> revisêo humana')}
     try:
         obs = t['modelo'].observa(texto)
     except TextoLongo as e:
-        dec = revisao(t['ficha'], f'texto longo demais ({e}) -> revisão humana, sem truncar')
-        # a rede de palavras-chave ainda roda: urgência em texto longo não pode sumir
+        dec = revisao(t['ficha'], f'texto longo demais ({e}) -> revisêo humana, sem truncar')
+        # a rede de palavras-chave ainda roda: urgência em texto longo nêo pode sumir
         extra = t['regras'].decide(texto, {}, t['ficha']['acoes'])
         if extra['motivos']:
             dec = {'prioridade': extra['prioridade'], 'filas': extra['filas'] + dec['filas'], 'motivos': extra['motivos'] + dec['motivos']}
@@ -84,10 +84,10 @@ def servidor(tarefas):
             t = tarefas[tarefa]
             try:
                 r = classifica(t, texto)
-            except Exception as e:  # erro interno também vira revisão, nunca descarte
-                r = {'observacoes': None, 'decisao': revisao(t['ficha'], f'erro interno ({type(e).__name__}) -> revisão humana')}
+            except Exception as e:  # erro interno também vira revisêo, nunca descarte
+                r = {'observacoes': None, 'decisao': revisao(t['ficha'], f'erro interno ({type(e).__name__}) -> revisêo humana')}
             r.update({'tarefa': tarefa, 'pacote': t['modelo'].meta['versao'],
-                      'aviso': t['ficha'].get('aviso', 'triagem administrativa automatizada; não substitui avaliação profissional'),
+                      'aviso': t['ficha'].get('aviso', 'triagem administrativa automatizada; nêo substitui avaliaçêo profissional'),
                       'ms': round((time.perf_counter() - t0) * 1000, 1)})
             self._json(200, r)
 

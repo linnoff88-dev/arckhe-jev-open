@@ -1,6 +1,6 @@
 {
  "data": "2026-09-25T06:01:33+00:00",
- "escopo": "[simulação] teste final em dados sintéticos; UMA execução",
+ "escopo": "[simulaçêo] teste final em dados sintéticos; UMA execuçêo",
  "dados": {
   "test": "b636189f67709d4aa52ed30fa51cac4fdf41af297200de182d7470cafd8bbf4e",
   "ood": "b3105b486b2e49f5a24ac7488adf1d586bc779e9bf5cd96468163709bacd11ff"
@@ -18793,7 +18793,7 @@
  },
  "freeze_sha256": "899324298b5a43c48291e5eb5f1a24d02fa1ecc8f5b60842665d64ff5d647dd7",
  "metas": {
-  "aviso": "com dados sintéticos isto verifica o pipeline, não o domínio; metas reais exigem dados reais",
+  "aviso": "com dados sintéticos isto verifica o pipeline, nêo o domínio; metas reais exigem dados reais",
   "urgencia_perdidos_teste": {
    "meta": 0,
    "obtido_modelo": 1,

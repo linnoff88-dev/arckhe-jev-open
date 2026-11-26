@@ -2,8 +2,8 @@
 
 uso: uv run python tools/testar_servico.py http://127.0.0.1:8080 <tarefa> [--run v1] [--origem local|docker]
 
-Os casos saem dos exemplos de revisão (somente teste) da própria tarefa, então a ferramenta
-não depende de domínio. Grava tasks/<t>/recibos/<run>/servico-testes-<origem>.json.
+Os casos saem dos exemplos de revisêo (somente teste) da própria tarefa, entêo a ferramenta
+nêo depende de domínio. Grava tasks/<t>/recibos/<run>/servico-testes-<origem>.json.
 """
 import argparse, json, sys, urllib.error, urllib.request
 from pathlib import Path
@@ -39,7 +39,7 @@ def main():
     casos = [
         ('urgente', {'texto': urgente['texto']}, 200, lambda r: r['decisao']['prioridade'] == imediato),
         ('ambigua', {'texto': duvidoso['texto']}, 200, lambda r: r['observacoes'] is not None and r['decisao']['prioridade']),
-        ('contraditoria', {'texto': urgente['texto'] + ' Esquece, não é nada urgente, está tudo bem.'}, 200,
+        ('contraditoria', {'texto': urgente['texto'] + ' Esquece, nêo é nada urgente, está tudo bem.'}, 200,
          lambda r: r['decisao']['prioridade'] == imediato),
         ('vazia', {'texto': '   '}, 200, lambda r: r['decisao']['prioridade'] == rev and r['observacoes'] is None),
         ('longa_sem_truncar', {'texto': ('Bom dia, segue um relato detalhado. ' * 400) + urgente['texto']}, 200,

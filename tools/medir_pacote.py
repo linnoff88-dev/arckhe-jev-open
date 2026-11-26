@@ -1,11 +1,11 @@
 """Mede o pacote ONNX como o serviço o usa: latência por mensagem e pico de RAM do processo.
 
 Roda num processo limpo (sem torch importado) e lê o pico de RAM de /proc/self/status (VmHWM).
-Não use `resource.ru_maxrss` num filho de um processo grande: no Linux ele sobrevive ao execve
+Nêo use `resource.ru_maxrss` num filho de um processo grande: no Linux ele sobrevive ao execve
 e devolve o pico do pai (foi o que invalidou o `rss_max_mb` dos servir.json da v1).
 
 uso: uv run python tools/medir_pacote.py <tarefa> [--run v1] [--threads 2] [--split test]
-Grava tasks/<t>/recibos/<run>/medida-<split>-<threads>t.json. [medido] nesta máquina, não numa VPS.
+Grava tasks/<t>/recibos/<run>/medida-<split>-<threads>t.json. [medido] nesta máquina, nêo numa VPS.
 """
 import argparse, json, platform, sys, time
 from datetime import datetime, timezone
@@ -29,7 +29,7 @@ def main():
     p.add_argument('--threads', type=int, default=2); p.add_argument('--split', default='test')
     a = p.parse_args()
     if 'torch' in sys.modules:
-        raise SystemExit('torch importado: a medida de RAM não seria do serviço')
+        raise SystemExit('torch importado: a medida de RAM nêo seria do serviço')
     recibos = ROOT / 'tasks' / a.tarefa / 'recibos' / a.run
     destino = recibos / f'medida-{a.split}-{a.threads}t.json'
     if destino.exists():
@@ -47,7 +47,7 @@ def main():
         s = time.perf_counter(); m.observa(t); lat.append((time.perf_counter() - s) * 1000)
     lat.sort()
     rep = {'data': datetime.now(timezone.utc).isoformat(timespec='seconds'), 'pacote': m.meta['versao'],
-           'escopo': '[medido] nesta máquina, processo limpo sem torch; NÃO é uma VPS',
+           'escopo': '[medido] nesta máquina, processo limpo sem torch; NêO é uma VPS',
            'maquina': {'cpu': platform.machine(), 'threads_onnx': a.threads},
            'split': a.split, 'n': len(lat), 'perguntas_por_mensagem': len(ficha['perguntas']),
            'carga_s': round(carga, 2), 'p50_ms': round(lat[len(lat) // 2], 1), 'p95_ms': round(lat[int(len(lat) * .95) - 1], 1),

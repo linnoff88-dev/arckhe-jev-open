@@ -2,7 +2,7 @@
  "data": "2026-09-25T05:55:48+00:00",
  "checkpoint": "workshops/advocacia-atendimento-v1/checkpoint.safetensors",
  "checkpoint_sha256": "7c526342d8ba36d4401622a9aabfdd2677109ce029750eff6004d65c66c0f09b",
- "formato": "só os parâmetros treinados; carregar sobre o modelo base na revisão fixa",
+ "formato": "só os parâmetros treinados; carregar sobre o modelo base na revisêo fixa",
  "modelo": {
   "id": "MoritzLaurer/bge-m3-zeroshot-v2.0",
   "revisao": "9abf1c8aaeb82a2447809c20753ed0b106b76652"

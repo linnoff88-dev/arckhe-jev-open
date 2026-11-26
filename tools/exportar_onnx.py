@@ -1,9 +1,9 @@
-"""Fase 6: congelado -> pacote ONNX int8 para CPU + medição (paridade, latência, memória).
+"""Fase 6: congelado -> pacote ONNX int8 para CPU + mediçêo (paridade, latência, memória).
 
 uso: uv run python tools/exportar_onnx.py <tarefa> [--run v1] [--threads 2]
 
-Saída: workshops/<t>-<run>/pacote/ (NÃO versionado: pesos) e tasks/<t>/recibos/<run>/servir.json.
-Latência e RAM são [medido] nesta máquina (GB10, CPU aarch64, N threads) — NÃO é uma VPS.
+Saída: workshops/<t>-<run>/pacote/ (NêO versionado: pesos) e tasks/<t>/recibos/<run>/servir.json.
+Latência e RAM sêo [medido] nesta máquina (GB10, CPU aarch64, N threads) — NêO é uma VPS.
 """
 import argparse, json, platform, shutil, subprocess, sys, time
 from pathlib import Path
@@ -58,7 +58,7 @@ def main():
     else:
         c = base['decisao']['modelo_para_treino']
         m, fz = Especialista(c['id'], c['revisao']), {'modelo': c, 'temperatura': 1.0}
-        origem = {'tipo': 'zero-shot (baseline decidiu não treinar)'}
+        origem = {'tipo': 'zero-shot (baseline decidiu nêo treinar)'}
     m.model.to('cpu').eval(); m.device = 'cpu'
 
     # 1) export fp32
@@ -118,8 +118,8 @@ def main():
     torch_f1 = resumo(decs, ref, ficha)['macro_f1']
     delta = round((medidas['model.int8.onnx']['metricas_teste']['macro_f1'] - torch_f1) * 100, 2)
     pl.grava(recibos / 'servir.json', {
-        'data': pl.agora(), 'pacote': meta['versao'], 'escopo': '[simulação] dados sintéticos; latência/RAM [medido] na GB10, NÃO numa VPS',
-        'maquina': {'cpu': platform.machine(), 'threads_onnx': a.threads, 'nota': 'GB10 (aarch64); a VPS de 2 vCPU/4 GB continua [não medido]'},
+        'data': pl.agora(), 'pacote': meta['versao'], 'escopo': '[simulaçêo] dados sintéticos; latência/RAM [medido] na GB10, NêO numa VPS',
+        'maquina': {'cpu': platform.machine(), 'threads_onnx': a.threads, 'nota': 'GB10 (aarch64); a VPS de 2 vCPU/4 GB continua [nêo medido]'},
         'teste_sha256': manifest['splits']['test']['sha256'], 'torch_fp32_macro_f1': torch_f1, 'medidas': medidas,
         'portao': {'int8_vs_fp32_pp': delta, 'meta_pp': 1.0, 'aprovado': abs(delta) <= 1.0}})
     for f in pacote.iterdir():  # o pacote leva só o int8, o tokenizer e o contrato

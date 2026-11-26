@@ -2,7 +2,7 @@
  "data": "2026-09-25T06:05:19+00:00",
  "checkpoint": "workshops/clinica-triagem-v1/checkpoint.safetensors",
  "checkpoint_sha256": "46ce8ef44b91bbe140018dfaf9765d55e3da0382051df0300ac43ae612a54510",
- "formato": "só os parâmetros treinados; carregar sobre o modelo base na revisão fixa",
+ "formato": "só os parâmetros treinados; carregar sobre o modelo base na revisêo fixa",
  "modelo": {
   "id": "MoritzLaurer/bge-m3-zeroshot-v2.0",
   "revisao": "9abf1c8aaeb82a2447809c20753ed0b106b76652"

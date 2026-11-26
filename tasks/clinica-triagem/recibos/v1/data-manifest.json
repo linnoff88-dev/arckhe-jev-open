@@ -3,7 +3,7 @@
  "tarefa": "clinica-triagem",
  "run": "v1",
  "sintetico": true,
- "aviso": "dados 100% sintéticos gerados e conferidos por LLMs locais; resultados são [simulação] do pipeline, não evidência do domínio",
+ "aviso": "dados 100% sintéticos gerados e conferidos por LLMs locais; resultados sêo [simulaçêo] do pipeline, nêo evidência do domínio",
  "fontes": {
   "indist": {
    "arquivo": "tasks/clinica-triagem/dados/sintetico.jsonl",

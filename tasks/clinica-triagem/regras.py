@@ -2,7 +2,7 @@
 
 Nenhum modelo aqui. Toda mensagem vai para a secretária; isto só define fila e prioridade.
 """
-from rede_alarme import dispara  # pasta com hífen não é pacote; importar com a pasta da tarefa no sys.path
+from rede_alarme import dispara  # pasta com hífen nêo é pacote; importar com a pasta da tarefa no sys.path
 
 PRIORIDADE = ['humano_imediato', 'fila_agenda', 'fila_documentos', 'fila_secretaria', 'fila_normal']
 

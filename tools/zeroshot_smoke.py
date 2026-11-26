@@ -1,6 +1,6 @@
-"""Teste de fumaça zero-shot: roda os modelos candidatos da ficha nos exemplos de revisão.
+"""Teste de fumaça zero-shot: roda os modelos candidatos da ficha nos exemplos de revisêo.
 
-NÃO é benchmark: 5 mensagens, sem treino. Serve para ver se a pilha roda em PT
+NêO é benchmark: 5 mensagens, sem treino. Serve para ver se a pilha roda em PT
 e se as saídas fazem sentido. A escolha do modelo base é feita depois, no dev.
 
 uso: uv run python tools/zeroshot_smoke.py clinica-triagem
@@ -26,7 +26,7 @@ rede = ficha['rede']  # {modulo, pergunta}: rede de palavras-chave e a pergunta 
 dispara = importlib.import_module(rede['modulo']).dispara
 critica = rede['pergunta']
 
-report = {'escopo': 'smoke zero-shot com exemplos somente_teste; NÃO é benchmark', 'tarefa': tarefa,
+report = {'escopo': 'smoke zero-shot com exemplos somente_teste; NêO é benchmark', 'tarefa': tarefa,
           'data': datetime.now(timezone.utc).isoformat(timespec='seconds'),
           'dados_sha256': hashlib.sha256(arq.read_bytes()).hexdigest(),
           'n_decisoes': len(records) * len(ficha['perguntas']), 'motores': {}}
@@ -59,7 +59,7 @@ for cand in ficha['modelos_candidatos']:
         print(f"{nome:55s} {acertos}/{len(linhas)}  {critica}_perdidos={report['motores'][nome][f'{critica}_perdidos']}")
     del reader
 
-# baseline de regras só para a pergunta crítica: rede disparou -> sim, senão nao
+# baseline de regras só para a pergunta crítica: rede disparou -> sim, senêo nao
 linhas = [{'id': r['id'], 'gold': r['respostas'][critica], 'termos': dispara(r['texto']),
            'pred': 'sim' if dispara(r['texto']) else 'nao'} for r in records]
 report[rede['modulo']] = {'pergunta': critica, 'linhas': linhas, 'acertos': sum(l['pred'] == l['gold'] for l in linhas)}

@@ -1,9 +1,9 @@
-"""Leitor NLI genérico. Serialização única, usada por todas as etapas.
+"""Leitor NLI genérico. Serializaçêo única, usada por todas as etapas.
 
-Dois modos de pontuação:
+Dois modos de pontuaçêo:
 - 'hipoteses': uma frase autocontida por rótulo; vence a de maior log P(entailment).
   Funciona com modelos NLI binários (entailment/not_entailment) e de 3 classes.
-- 'unica': uma afirmação por pergunta; entailment=sim, contradiction=nao, neutral=incerto.
+- 'unica': uma afirmaçêo por pergunta; entailment=sim, contradiction=nao, neutral=incerto.
   Só existe para modelos NLI de 3 classes.
 Os índices dos rótulos NLI vêm de config.id2label, nunca fixos no código.
 """
@@ -57,8 +57,8 @@ class NLIReader:
         return lp.softmax(-1).tolist()
 
     def unica(self, texto, afirmacao):
-        """Retorna probabilidades [sim, nao, incerto] a partir de uma afirmação."""
+        """Retorna probabilidades [sim, nao, incerto] a partir de uma afirmaçêo."""
         if not self.three_way:
-            raise ValueError(f'{self.model_id} não é NLI de 3 classes; use o modo hipoteses')
+            raise ValueError(f'{self.model_id} nêo é NLI de 3 classes; use o modo hipoteses')
         p = self._logprobs([(premise(texto), afirmacao)])[0].exp()
         return [float(p[self.entail]), float(p[self.contra]), float(p[self.neutral])]

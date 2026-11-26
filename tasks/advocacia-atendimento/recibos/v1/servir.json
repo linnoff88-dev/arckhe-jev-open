@@ -1,11 +1,11 @@
 {
  "data": "2026-09-25T06:20:27+00:00",
  "pacote": "advocacia-atendimento-v1-6df28fe7",
- "escopo": "[simulação] dados sintéticos; latência/RAM [medido] na GB10, NÃO numa VPS",
+ "escopo": "[simulaçêo] dados sintéticos; latência/RAM [medido] na GB10, NêO numa VPS",
  "maquina": {
   "cpu": "aarch64",
   "threads_onnx": 2,
-  "nota": "GB10 (aarch64); a VPS de 2 vCPU/4 GB continua [não medido]"
+  "nota": "GB10 (aarch64); a VPS de 2 vCPU/4 GB continua [nêo medido]"
  },
  "teste_sha256": "b636189f67709d4aa52ed30fa51cac4fdf41af297200de182d7470cafd8bbf4e",
  "torch_fp32_macro_f1": 0.6288,

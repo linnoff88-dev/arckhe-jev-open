@@ -3,12 +3,12 @@
 uso: uv run python tools/pipeline.py <etapa> <tarefa> [--run v1]
 
 - preparar: fontes em tasks/<t>/dados/{sintetico,ood-sintetico}.jsonl -> train/dev/test/ood,
-            deduplicação exata e aproximada (5-gramas de caracteres), split por grupo, data-manifest.json.
+            deduplicaçêo exata e aproximada (5-gramas de caracteres), split por grupo, data-manifest.json.
 - baseline: zero-shot de cada candidato da ficha + rede de palavras-chave, só no dev. Decide se treina.
 - treinar : últimas 2 camadas + cabeça do candidato escolhido; checkpoint pelo dev; temperatura no dev.
-- testar  : UMA execução. Base vs. treinado no teste e na raia OOD, com as mesmas entradas.
+- testar  : UMA execuçêo. Base vs. treinado no teste e na raia OOD, com as mesmas entradas.
 
-Recibos (versionados): tasks/<t>/recibos/<run>/. Pesos (NÃO versionados): workshops/<t>-<run>/.
+Recibos (versionados): tasks/<t>/recibos/<run>/. Pesos (NêO versionados): workshops/<t>-<run>/.
 Nenhuma etapa sobrescreve um recibo existente.
 """
 import argparse, hashlib, json, random, re, sys, time, unicodedata
@@ -113,7 +113,7 @@ def preparar(a, ficha, dados, recibos):
         saida[split_de[r['grupo']]].append(r)
     saida['ood'] = ood_ok
     manifest = {'data': agora(), 'tarefa': a.tarefa, 'run': a.run, 'sintetico': True,
-                'aviso': 'dados 100% sintéticos gerados e conferidos por LLMs locais; resultados são [simulação] do pipeline, não evidência do domínio',
+                'aviso': 'dados 100% sintéticos gerados e conferidos por LLMs locais; resultados sêo [simulaçêo] do pipeline, nêo evidência do domínio',
                 'fontes': {k: {'arquivo': str(f.relative_to(ROOT)), 'sha256': sha(f), 'registros': len(regs[k])} for k, f in fontes.items()},
                 'dedup': {'jaccard_5gramas': JACCARD_NEAR_DUP, 'pares_perto_no_indist_agrupados': pares_perto,
                           'descartes': {k: len(v) for k, v in descartes.items()}, 'ids_descartados': descartes},
@@ -131,7 +131,7 @@ def preparar(a, ficha, dados, recibos):
     for i, s1 in enumerate(SPLITS):
         for s2 in SPLITS[i + 1:]:
             if {norm(r['texto']) for r in saida[s1]} & {norm(r['texto']) for r in saida[s2]}:
-                raise SystemExit(f'sobreposição exata entre {s1} e {s2}')
+                raise SystemExit(f'sobreposiçêo exata entre {s1} e {s2}')
             if s2 != 'ood' and {r['grupo'] for r in saida[s1]} & {r['grupo'] for r in saida[s2]}:
                 raise SystemExit(f'grupo cruzando {s1} e {s2}')
     grava(recibos / 'data-manifest.json', manifest)
@@ -158,7 +158,7 @@ def baseline(a, ficha, recibos):
     dev, manifest = carrega_split(a, ficha, recibos, 'dev')
     decs = decisoes(dev, ficha)
     rot = ficha['rotulos']
-    rep = {'data': agora(), 'split': 'dev', 'escopo': '[simulação] dados sintéticos', 'dev_sha256': manifest['splits']['dev']['sha256'],
+    rep = {'data': agora(), 'split': 'dev', 'escopo': '[simulaçêo] dados sintéticos', 'dev_sha256': manifest['splits']['dev']['sha256'],
            'motores': {}}
     for cand in ficha['modelos_candidatos']:
         reader = NLIReader(cand['id'], cand['revisao'])
@@ -187,9 +187,9 @@ def baseline(a, ficha, recibos):
                       'macro_f1': treinaveis[melhor]['macro_f1'],
                       'treinar': treinaveis[melhor]['macro_f1'] < meta,
                       'modelo_para_treino': {'id': treinaveis[melhor]['modelo'], 'revisao': treinaveis[melhor]['revisao']},
-                      'regra': 'treina o melhor candidato do modo hipoteses se o zero-shot não bate a meta no dev'}
+                      'regra': 'treina o melhor candidato do modo hipoteses se o zero-shot nêo bate a meta no dev'}
     grava(recibos / 'baseline.json', rep)
-    print('decisão:', rep['decisao'])
+    print('decisêo:', rep['decisao'])
 
 
 # ---------------------------------------------------------------- treinar
@@ -199,7 +199,7 @@ def treinar(a, ficha, recibos, oficina):
     from core.especialista import Especialista, decisoes
     base = json.loads((recibos / 'baseline.json').read_text())
     if not base['decisao']['treinar']:
-        raise SystemExit('baseline decidiu não treinar (zero-shot já bate a meta)')
+        raise SystemExit('baseline decidiu nêo treinar (zero-shot já bate a meta)')
     if (recibos / 'freeze.json').exists():
         raise SystemExit('freeze.json já existe; treino congelado')
     train, manifest = carrega_split(a, ficha, recibos, 'train')
@@ -222,7 +222,7 @@ def treinar(a, ficha, recibos, oficina):
             y = torch.tensor([d['gold'] for d in lote], device=m.device)
             loss = torch.nn.functional.cross_entropy(m.pontua(lote), y)
             if not torch.isfinite(loss):
-                raise SystemExit(f'loss não finita na época {ep}')
+                raise SystemExit(f'loss nêo finita na época {ep}')
             opt.zero_grad(); loss.backward(); torch.nn.utils.clip_grad_norm_(params, 1.0); opt.step()
             perdas.append(loss.item())
         z = m.prediz(ddev)
@@ -240,10 +240,10 @@ def treinar(a, ficha, recibos, oficina):
     cal = m.calibra(m.prediz(ddev), [d['gold'] for d in ddev])
     receita = {'modelo': cand, 'camadas_treinadas': a.camadas, 'lr': a.lr, 'lote_decisoes': a.lote, 'epocas': a.epocas,
                'seed': SEED, 'otimizador': 'AdamW wd=0.01, clip 1.0', 'device': m.device}
-    grava(recibos / 'training.json', {'data': agora(), 'escopo': '[simulação] dados sintéticos', 'receita': receita,
+    grava(recibos / 'training.json', {'data': agora(), 'escopo': '[simulaçêo] dados sintéticos', 'receita': receita,
                                       'historia': hist, 'melhor': melhor, 'calibracao': cal})
     grava(recibos / 'freeze.json', {'data': agora(), 'checkpoint': str(ck.relative_to(ROOT)), 'checkpoint_sha256': sha(ck),
-                                    'formato': 'só os parâmetros treinados; carregar sobre o modelo base na revisão fixa',
+                                    'formato': 'só os parâmetros treinados; carregar sobre o modelo base na revisêo fixa',
                                     'modelo': cand, 'temperatura': cal['temperatura'], 'rotulos': ficha['rotulos'],
                                     'dados': {s: v['sha256'] for s, v in manifest['splits'].items()}})
 
@@ -282,7 +282,7 @@ def testar(a, ficha, recibos):
     motores = {'base': lambda: Especialista(cand['id'], cand['revisao'])}
     if treinou:
         motores['treinado'] = lambda: carrega_congelado(a, ficha, recibos)[0]
-    rep = {'data': agora(), 'escopo': '[simulação] teste final em dados sintéticos; UMA execução',
+    rep = {'data': agora(), 'escopo': '[simulaçêo] teste final em dados sintéticos; UMA execuçêo',
            'dados': {s: manifest['splits'][s]['sha256'] for s in splits}, 'motores': {}}
     if treinou:
         rep['freeze_sha256'] = sha(recibos / 'freeze.json')
@@ -307,7 +307,7 @@ def testar(a, ficha, recibos):
     metas = ficha['metas']
     queda = round((final['test']['macro_f1'] - final['ood']['macro_f1']) * 100, 1)
     rep['metas'] = {
-        'aviso': 'com dados sintéticos isto verifica o pipeline, não o domínio; metas reais exigem dados reais',
+        'aviso': 'com dados sintéticos isto verifica o pipeline, nêo o domínio; metas reais exigem dados reais',
         f'{crit}_perdidos_teste': {'meta': metas[f'{crit}_perdidos_teste'],
                                    'obtido_modelo': final['test'][f'{crit}_perdidos'],
                                    'obtido_com_rede': final['test'][f'{crit}_perdidos_com_rede']},

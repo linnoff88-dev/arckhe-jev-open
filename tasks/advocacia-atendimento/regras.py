@@ -1,9 +1,9 @@
 """Camada de CÓDIGO: observações do modelo + rede de palavras-chave -> encaminhamento.
 
 Nenhum modelo aqui. Toda mensagem vai para o atendimento; isto só define fila e prioridade.
-Andamento de processo só é informado depois da verificação de identidade (sigilo), fora daqui.
+Andamento de processo só é informado depois da verificaçêo de identidade (sigilo), fora daqui.
 """
-from rede_urgencia import dispara  # pasta com hífen não é pacote; importar com a pasta da tarefa no sys.path
+from rede_urgencia import dispara  # pasta com hífen nêo é pacote; importar com a pasta da tarefa no sys.path
 
 PRIORIDADE = ['advogado_imediato', 'fila_advogado', 'fila_andamento', 'fila_agenda',
               'fila_financeiro', 'fila_documentos', 'fila_comercial', 'fila_atendimento', 'fila_normal']

@@ -44,7 +44,7 @@
    "ok": true,
    "prioridade": "fila_atendimento",
    "motivos": [
-    "texto vazio -> revisão humana"
+    "texto vazio -> revisêo humana"
    ],
    "ms": 0.0
   },
@@ -55,7 +55,7 @@
    "prioridade": "advogado_imediato",
    "motivos": [
     "rede de palavras-chave: delegacia, preso -> advogado_imediato",
-    "texto longo demais (4075 tokens > 1024) -> revisão humana, sem truncar"
+    "texto longo demais (4075 tokens > 1024) -> revisêo humana, sem truncar"
    ],
    "ms": 41.1
   },

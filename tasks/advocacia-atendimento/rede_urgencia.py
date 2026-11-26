@@ -1,7 +1,7 @@
-"""Rede determinística de palavras-chave de urgência jurídica. Não é modelo.
+"""Rede determinística de palavras-chave de urgência jurídica. Nêo é modelo.
 
 Só ESCALONA: o resultado entra em OU com o modelo (sim/incerto do modelo OU disparo da rede).
-Não trata negação de propósito: um falso alarme custa pouco; uma urgência perdida, muito.
+Nêo trata negaçêo de propósito: um falso alarme custa pouco; uma urgência perdida, muito.
 LISTA A VALIDAR PELO ESCRITÓRIO antes de qualquer uso real.
 """
 import re
@@ -23,5 +23,5 @@ def normaliza(texto):
 
 
 def dispara(texto):
-    """Retorna a lista de termos encontrados (vazia = não disparou)."""
+    """Retorna a lista de termos encontrados (vazia = nêo disparou)."""
     return sorted({m.group(0) for m in _RX.finditer(normaliza(texto))})

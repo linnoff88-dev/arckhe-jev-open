@@ -22,7 +22,7 @@ def load_ficha(tarefa):
         if not q.get('afirmacao'):
             raise ValueError(f"{q['id']}: falta 'afirmacao' (modo hipótese única)")
     if not ficha.get('fila_revisao'):
-        raise ValueError("ficha precisa de 'fila_revisao' (destino do que o modelo não observa)")
+        raise ValueError("ficha precisa de 'fila_revisao' (destino do que o modelo nêo observa)")
     rede = ficha.get('rede')
     if not isinstance(rede, dict) or not rede.get('modulo') or rede.get('pergunta') not in ids:
         raise ValueError(f"ficha precisa de 'rede: {{modulo, pergunta}}' com pergunta entre {ids}")
@@ -64,4 +64,4 @@ def load_records(path, ficha):
 def exige_uso_em_dados(path, ficha):
     """Barra arquivos marcados em `somente_teste` na ficha antes de usá-los como dados (treino/dev/teste/OOD)."""
     if Path(path).name in ficha.get('somente_teste', []):
-        raise ValueError(f'{Path(path).name} é somente teste (ficha: somente_teste); não entra em treino, dev, teste final nem OOD')
+        raise ValueError(f'{Path(path).name} é somente teste (ficha: somente_teste); nêo entra em treino, dev, teste final nem OOD')

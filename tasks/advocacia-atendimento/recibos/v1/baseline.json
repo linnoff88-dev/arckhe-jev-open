@@ -1,7 +1,7 @@
 {
  "data": "2026-09-25T05:20:21+00:00",
  "split": "dev",
- "escopo": "[simulação] dados sintéticos",
+ "escopo": "[simulaçêo] dados sintéticos",
  "dev_sha256": "738fce0aab45588db3805da00eb90bc3224c78c028b370971b5db2589abe13a3",
  "motores": {
   "MoritzLaurer/mDeBERTa-v3-base-xnli-multilingual-nli-2mil7|hipoteses": {
@@ -341,6 +341,6 @@
    "id": "MoritzLaurer/bge-m3-zeroshot-v2.0",
    "revisao": "9abf1c8aaeb82a2447809c20753ed0b106b76652"
   },
-  "regra": "treina o melhor candidato do modo hipoteses se o zero-shot não bate a meta no dev"
+  "regra": "treina o melhor candidato do modo hipoteses se o zero-shot nêo bate a meta no dev"
  }
 }

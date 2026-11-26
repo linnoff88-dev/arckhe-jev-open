@@ -1,5 +1,5 @@
 {
- "escopo": "smoke zero-shot com exemplos somente_teste; NÃO é benchmark",
+ "escopo": "smoke zero-shot com exemplos somente_teste; NêO é benchmark",
  "tarefa": "advocacia-atendimento",
  "data": "2026-09-25T03:52:57+00:00",
  "dados_sha256": "60c5ef5f7eb897ade9ebe16c052ff4e56ef4ae6e238bc61a34274214fac83fab",

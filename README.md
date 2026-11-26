@@ -1,27 +1,27 @@
-﻿# jev-open
+ï»¿# jev-open
 
-**ðŸ‡§ðŸ‡· [PortuguÃªs](README.md) Â· ðŸ‡ºðŸ‡¸ [English](README.en.md) Â· ðŸ‡ªðŸ‡¸ [EspaÃ±ol](README.es.md)**
+**ê°Å¸â¡Â§ê°Å¸â¡Â· [PortuguêÂªs](README.md) êÂ· ê°Å¸â¡Âºê°Å¸â¡Â¸ [English](README.en.md) êÂ· ê°Å¸â¡Âªê°Å¸â¡Â¸ [EspaêÂ±ol](README.es.md)**
 
-![jev-open â€” especialista local de triagem](guia/assets/banner.jpg)
+![jev-open ê¢â¬â especialista local de triagem](guia/assets/banner.jpg)
 
-## ðŸ“– Guia de uso
+## ê°Å¸ââ Guia de uso
 
 Guia completo (landing + passo a passo): **https://inematds.github.io/jev-open/guia/**
 
-Especialista classificador **local e open-source** no estilo Jev: o modelo lÃª um documento e responde perguntas fixas com 3 respostas (atende / contraria / sem evidÃªncia), e o cÃ³digo aplica as regras de negÃ³cio. A incerteza vai para revisÃ£o.
+Especialista classificador **local e open-source** no estilo Jev: o modelo lêÂª um documento e responde perguntas fixas com 3 respostas (atende / contraria / sem evidêÂªncia), e o cêÂ³digo aplica as regras de negêÂ³cio. A incerteza vai para revisêÂ£o.
 
-Status: **v0.6.4.** Run v1 completo nos dois nichos de exemplo (`tasks/advocacia-atendimento/`, `tasks/clinica-triagem/`): dados, baseline, treino, teste final, ONNX int8, API em CPU e Docker. Dados **100% sintÃ©ticos**, entÃ£o os nÃºmeros sÃ£o [simulaÃ§Ã£o] do pipeline; ver [Resultados v1](docs/RESULTADOS-v1.md).
+Status: **v0.6.4.** Run v1 completo nos dois nichos de exemplo (`tasks/advocacia-atendimento/`, `tasks/clinica-triagem/`): dados, baseline, treino, teste final, ONNX int8, API em CPU e Docker. Dados **100% sintêÂ©ticos**, entêÂ£o os nêÂºmeros sêÂ£o [simulaêÂ§êÂ£o] do pipeline; ver [Resultados v1](docs/RESULTADOS-v1.md).
 
-- [AnÃ¡lise do material de referÃªncia](docs/ANALISE.md)
+- [AnêÂ¡lise do material de referêÂªncia](docs/ANALISE.md)
 - [Como funciona (hotel)](docs/COMO-FUNCIONA.md)
-- [Plano do modelo padrÃ£o para qualquer sistema](docs/PLANO.md)
+- [Plano do modelo padrêÂ£o para qualquer sistema](docs/PLANO.md)
 - [Passo a passo por nicho (e do zero em outros)](docs/PASSO-A-PASSO.md)
 - [Resultados do run v1](docs/RESULTADOS-v1.md)
-- [SugestÃ£o: escolher modelo e ferramenta em assistentes (Jarvis, openpcbotv3)](docs/SUGESTAO-ROTEAMENTO.md) â€” nÃ£o implementado
+- [SugestêÂ£o: escolher modelo e ferramenta em assistentes (Jarvis, openpcbotv3)](docs/SUGESTAO-ROTEAMENTO.md) ê¢â¬â nêÂ£o implementado
 - [Ficha de tarefa (template)](templates/FICHA-TAREFA.md)
 
-ReferÃªncia pÃºblica: <https://github.com/earlyaidopters/away-together-starter> (MIT). Projeto independente; nÃ£o Ã© uma implementaÃ§Ã£o oficial do Jev.
+ReferêÂªncia pêÂºblica: <https://github.com/earlyaidopters/away-together-starter> (MIT). Projeto independente; nêÂ£o êÂ© uma implementaêÂ§êÂ£o oficial do Jev.
 
 ---
 
-Projeto adaptado da comunidade INEMA TDS - Marca Arckhe
+Projeto  - ARCKHÉe

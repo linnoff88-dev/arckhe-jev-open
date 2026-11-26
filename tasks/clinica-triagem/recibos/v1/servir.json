@@ -1,11 +1,11 @@
 {
  "data": "2026-09-25T06:27:13+00:00",
  "pacote": "clinica-triagem-v1-05a719f3",
- "escopo": "[simulação] dados sintéticos; latência/RAM [medido] na GB10, NÃO numa VPS",
+ "escopo": "[simulaçêo] dados sintéticos; latência/RAM [medido] na GB10, NêO numa VPS",
  "maquina": {
   "cpu": "aarch64",
   "threads_onnx": 2,
-  "nota": "GB10 (aarch64); a VPS de 2 vCPU/4 GB continua [não medido]"
+  "nota": "GB10 (aarch64); a VPS de 2 vCPU/4 GB continua [nêo medido]"
  },
  "teste_sha256": "4aa00b414bf375f4c3fed1c5025d63725888d4f015455090020155077b18a3cb",
  "torch_fp32_macro_f1": 0.7737,

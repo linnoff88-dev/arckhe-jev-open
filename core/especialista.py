@@ -1,7 +1,7 @@
-"""Especialista treinável: leitor NLI no modo 'hipoteses' com pontuação diferenciável.
+"""Especialista treinável: leitor NLI no modo 'hipoteses' com pontuaçêo diferenciável.
 
-Cada decisão (texto, pergunta) vira 3 pares (texto, hipótese do rótulo); a pontuação de cada rótulo
-é o log P(entailment) do par, e o softmax sobre os 3 dá a distribuição. O treino ajusta só as
+Cada decisêo (texto, pergunta) vira 3 pares (texto, hipótese do rótulo); a pontuaçêo de cada rótulo
+é o log P(entailment) do par, e o softmax sobre os 3 dá a distribuiçêo. O treino ajusta só as
 últimas camadas do encoder e a cabeça. A temperatura é calibrada no dev depois do treino.
 """
 import math
@@ -32,7 +32,7 @@ def _camadas(model):
             return m
         except AttributeError:
             continue
-    raise ValueError(f'não achei as camadas do encoder em {type(base).__name__}')
+    raise ValueError(f'nêo achei as camadas do encoder em {type(base).__name__}')
 
 
 class Especialista(torch.nn.Module):
@@ -50,7 +50,7 @@ class Especialista(torch.nn.Module):
         self.to(self.device)
 
     def congela(self, n_topo):
-        """Treina só as últimas `n_topo` camadas do encoder e a cabeça de classificação."""
+        """Treina só as últimas `n_topo` camadas do encoder e a cabeça de classificaçêo."""
         for p in self.model.parameters():
             p.requires_grad = False
         for camada in list(_camadas(self.model))[-n_topo:]:

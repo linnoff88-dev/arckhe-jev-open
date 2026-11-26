@@ -5,7 +5,7 @@
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1" name="viewport"/>
 <title>jev-open — especialista classificador local</title>
-<meta content="Modelo pequeno e local que lê mensagens e responde perguntas fixas com sim, não ou não dá pra saber; o código decide e a dúvida vai para uma pessoa. Exemplos: advocacia e clínica." name="description"/>
+<meta content="Modelo pequeno e local que lê mensagens e responde perguntas fixas com sim, nêo ou nêo dá pra saber; o código decide e a dúvida vai para uma pessoa. Exemplos: advocacia e clínica." name="description"/>
 <link href="https://fonts.googleapis.com" rel="preconnect"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
 <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;800&amp;family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;600&amp;display=swap" rel="stylesheet"/>
@@ -117,21 +117,21 @@
 <div>
 <span class="chip">Pesquisa · IA local · open-source</span>
 <h1>O modelo <span class="amb">observa</span>, o código decide.</h1>
-<p class="lead">Um especialista pequeno, que roda na sua máquina, lê cada mensagem e responde perguntas fixas com sim, não ou não dá pra saber. A dúvida sempre vai para uma pessoa.</p>
+<p class="lead">Um especialista pequeno, que roda na sua máquina, lê cada mensagem e responde perguntas fixas com sim, nêo ou nêo dá pra saber. A dúvida sempre vai para uma pessoa.</p>
 <div class="cta">
 <a class="btn" href="#guia">Começar o guia</a>
 <a class="btn ghost" href="https://github.com/inematds/jev-open" rel="noopener" target="_blank">Ver no GitHub</a>
 </div>
 </div>
-<figure><img alt="Banner do jev-open: especialista local de triagem — o modelo observa, o código decide. Perguntas fixas; sim, não ou sem evidência; regras no código; dúvida para pessoa; roda em CPU; open-source" src="assets/banner.jpg"/></figure>
+<figure><img alt="Banner do jev-open: especialista local de triagem — o modelo observa, o código decide. Perguntas fixas; sim, nêo ou sem evidência; regras no código; dúvida para pessoa; roda em CPU; open-source" src="assets/banner.jpg"/></figure>
 </div>
 </header>
 <section id="oque"><div class="wrap">
 <span class="chip">O que é</span>
 <h2>Um classificador local no estilo Jev, para triagem de atendimento</h2>
-<p class="sub">Projeto de pesquisa e educação. Não declara paridade com o Jev nem prontidão para produção. Os exemplos do repositório usam dados sintéticos, e todo número vem marcado como [medido], [relato] ou [simulação].</p>
+<p class="sub">Projeto de pesquisa e educaçêo. Nêo declara paridade com o Jev nem prontidêo para produçêo. Os exemplos do repositório usam dados sintéticos, e todo número vem marcado como [medido], [relato] ou [simulaçêo].</p>
 <div class="grid g3">
-<div class="card"><h3>🧩 Três respostas por pergunta</h3><p>Cada pergunta da ficha ("quer agendar?", "há urgência?") vira sim / não / incerto, com probabilidade calibrada. Falta de evidência nunca vira "sim".</p></div>
+<div class="card"><h3>🧩 Três respostas por pergunta</h3><p>Cada pergunta da ficha ("quer agendar?", "há urgência?") vira sim / nêo / incerto, com probabilidade calibrada. Falta de evidência nunca vira "sim".</p></div>
 <div class="card"><h3>⚙️ Regras no código</h3><p>Agenda, prazos, valores, prioridade e filas ficam em código comum. O modelo só observa, e uma lista de palavras-chave pode escalar casos críticos.</p></div>
 <div class="card"><h3>🖥️ Roda em CPU</h3><p>Treina na GPU, serve em CPU com ONNX int8 (~570 MB), numa API sem torch e num container Docker. Nenhuma mensagem sai da máquina.</p></div>
 </div>
@@ -143,13 +143,13 @@
 <div class="flow">
 <span>Mensagem</span><span class="arr">→</span>
 <span>Modelo: 7 perguntas × 3 hipóteses</span><span class="arr">→</span>
-<span>sim / não / incerto + %</span><span class="arr">→</span>
+<span>sim / nêo / incerto + %</span><span class="arr">→</span>
 <span>Código: regras + palavras-chave</span><span class="arr">→</span>
 <span>Fila + motivos</span>
 </div>
 <div class="grid g3" style="margin-top:24px">
-<div class="card"><h3>Construção (uma vez)</h3><p>Ficha da tarefa → exemplos revisados → dados → baseline sem treino → treino das 2 últimas camadas → teste final congelado + raia OOD.</p></div>
-<div class="card"><h3>Uso (sempre)</h3><p>API <code>POST /classify</code> em CPU. Texto vazio, longo demais (nunca truncado) ou erro interno vai direto para revisão humana.</p></div>
+<div class="card"><h3>Construçêo (uma vez)</h3><p>Ficha da tarefa → exemplos revisados → dados → baseline sem treino → treino das 2 últimas camadas → teste final congelado + raia OOD.</p></div>
+<div class="card"><h3>Uso (sempre)</h3><p>API <code>POST /classify</code> em CPU. Texto vazio, longo demais (nunca truncado) ou erro interno vai direto para revisêo humana.</p></div>
 <div class="card"><h3>Recibos</h3><p>Cada etapa grava um JSON com hashes, métricas e todas as predições. Nada é sobrescrito, e o teste final roda uma vez só.</p></div>
 </div>
 </div></section>
@@ -160,7 +160,7 @@
 <div class="grid g3">
 <div class="card"><h3>Python 3.12 + uv</h3><p>Gerencia as dependências de treino (torch, transformers, onnx).</p><pre><span class="k">uv sync</span></pre></div>
 <div class="card"><h3>Ollama (opcional)</h3><p>Só para gerar dados sintéticos de protótipo com LLM local, sem custo de API.</p><pre><span class="k">ollama pull</span> qwen3:30b</pre></div>
-<div class="card"><h3>Docker (serviço)</h3><p>A imagem leva só onnxruntime e tokenizers. Os pesos são montados em <code>/pacotes</code>.</p><pre><span class="k">docker compose up</span> --build</pre></div>
+<div class="card"><h3>Docker (serviço)</h3><p>A imagem leva só onnxruntime e tokenizers. Os pesos sêo montados em <code>/pacotes</code>.</p><pre><span class="k">docker compose up</span> --build</pre></div>
 </div>
 </div></section>
 <section id="guia"><div class="wrap">
@@ -183,12 +183,12 @@
 </div></div>
 <div class="step"><div class="b">3</div><div>
 <h3>5 exemplos + teste de fumaça</h3>
-<p>Uma pessoa do nicho revisa os exemplos (portão 1). Eles contam só como teste e nunca viram dado de treino.</p>
+<p>Uma pessoa do nicho revisa os exemplos (portêo 1). Eles contam só como teste e nunca viram dado de treino.</p>
 <pre><span class="k">uv run python</span> tools/zeroshot_smoke.py meu-nicho   <span class="c"># recibo em tasks/meu-nicho/recibos/</span></pre>
 </div></div>
 <div class="step"><div class="b">4</div><div>
 <h3>Dados</h3>
-<p>O ideal são mensagens reais anonimizadas. Para prototipar, o gerador sintético usa um LLM local e um segundo LLM como verificador, com tudo marcado como sintético.</p>
+<p>O ideal sêo mensagens reais anonimizadas. Para prototipar, o gerador sintético usa um LLM local e um segundo LLM como verificador, com tudo marcado como sintético.</p>
 <pre><span class="k">uv run python</span> tools/gerar_sintetico.py meu-nicho tasks/meu-nicho/dados/sintetico.jsonl \
     --n 320 --gerador qwen3.6:35b-a3b --verificador qwen3:30b --prefixo syn
 <span class="k">uv run python</span> tools/pipeline.py preparar meu-nicho   <span class="c"># split por grupo + dedup + manifest</span></pre>
@@ -202,7 +202,7 @@
 </div></div>
 <div class="step"><div class="b">6</div><div>
 <h3>Exportar e servir em CPU</h3>
-<p>ONNX int8, com portão de paridade (±1 pp contra o fp32) e medição de latência. A API recusa o pacote se a ficha tiver mudado depois do treino.</p>
+<p>ONNX int8, com portêo de paridade (±1 pp contra o fp32) e mediçêo de latência. A API recusa o pacote se a ficha tiver mudado depois do treino.</p>
 <pre><span class="k">uv run python</span> tools/exportar_onnx.py meu-nicho
 <span class="k">mkdir</span> -p pacotes &amp;&amp; <span class="k">cp</span> -r workshops/meu-nicho-v1/pacote pacotes/meu-nicho
 JEV_PACOTES=pacotes <span class="k">uv run python</span> -m serve.api --tarefas meu-nicho
@@ -214,8 +214,8 @@ JEV_PACOTES=pacotes <span class="k">uv run python</span> -m serve.api --tarefas 
 <h2>Dois nichos no repositório</h2>
 <p class="sub">Escopo sempre administrativo: sem parecer jurídico, sem diagnóstico. As listas de palavras-chave e os textos fixos precisam ser validados por profissionais antes de qualquer uso real.</p>
 <div class="grid g2">
-<div class="card"><h3>⚖️ Atendimento de advocacia</h3><p>7 perguntas: agendar, serviço, andamento do processo, pagamento, documento, dúvida jurídica e <strong>urgência</strong> (prisão, audiência ou prazo hoje/amanhã, mandado, despejo). Urgência "sim" ou "incerto" vai para o advogado na hora; a meta é zero urgências perdidas. Andamento só depois de verificar a identidade (sigilo).</p></div>
-<div class="card"><h3>🩺 Recepção de clínica</h3><p>4 perguntas: agendar, remarcar, documento e <strong>sintoma de alarme</strong>. Alarme "sim" ou "incerto" vai para uma pessoa na hora; a meta é zero alarmes perdidos. Dado de saúde é sensível na LGPD, por isso tudo roda na máquina da clínica.</p></div>
+<div class="card"><h3>⚖️ Atendimento de advocacia</h3><p>7 perguntas: agendar, serviço, andamento do processo, pagamento, documento, dúvida jurídica e <strong>urgência</strong> (prisêo, audiência ou prazo hoje/amanhê, mandado, despejo). Urgência "sim" ou "incerto" vai para o advogado na hora; a meta é zero urgências perdidas. Andamento só depois de verificar a identidade (sigilo).</p></div>
+<div class="card"><h3>🩺 Recepçêo de clínica</h3><p>4 perguntas: agendar, remarcar, documento e <strong>sintoma de alarme</strong>. Alarme "sim" ou "incerto" vai para uma pessoa na hora; a meta é zero alarmes perdidos. Dado de saúde é sensível na LGPD, por isso tudo roda na máquina da clínica.</p></div>
 </div>
 <pre style="margin-top:18px"><span class="k">POST</span> /classify?tarefa=advocacia-atendimento
 {<span class="s">"texto"</span>: <span class="s">"Boa noite, meu filho foi preso agora há pouco e está na delegacia do centro..."</span>}
@@ -229,16 +229,16 @@ JEV_PACOTES=pacotes <span class="k">uv run python</span> -m serve.api --tarefas 
 <section id="roadmap"><div class="wrap">
 <span class="chip">Roadmap</span>
 <h2>Onde o projeto está</h2>
-<p class="sub">Estado em 2026-09-25. O que depende de dados reais ou de uma VPS real ainda não foi medido.</p>
+<p class="sub">Estado em 2026-09-25. O que depende de dados reais ou de uma VPS real ainda nêo foi medido.</p>
 <div class="phase"><div class="tag">Feito</div><div class="d"><strong>Fases 0–1: ambiente, fichas e teste de fumaça</strong><span>torch com CUDA na GB10 [medido]; dois nichos com ficha, regras e palavras-chave; teste de fumaça sem nenhum caso crítico perdido [medido, 5 exemplos sintéticos].</span></div></div>
-<div class="phase"><div class="tag">Feito</div><div class="d"><strong>Run v1 completo, com dados sintéticos [simulação]</strong><span>Advocacia: acurácia no teste de 72% para 96%, com 1 urgência perdida (meta reprovada). Clínica: de 82% para 96%, zero alarmes perdidos. ONNX int8 de 570 MB, 0,7–1,5 s por mensagem e ~1,2–1,3 GB de RAM por nicho em 2 threads [medido na GB10, não numa VPS]; API e Docker passaram os 9 testes de serviço. Detalhes e reprovações em <a href="https://github.com/inematds/jev-open/blob/main/docs/RESULTADOS-v1.md">RESULTADOS-v1.md</a>.</span></div></div>
-<div class="phase"><div class="tag">Próximo</div><div class="d"><strong>Dados reais anonimizados + limiar calibrado</strong><span>Mensagens reais com autorização, anotadas por duas pessoas; raia OOD de outro escritório ou clínica; limiar de confiança por pergunta calibrado no dev; metas verificadas de verdade.</span></div></div>
-<div class="phase"><div class="tag">Depois</div><div class="d"><strong>VPS real e novas tarefas</strong><span>Latência e RAM numa VPS de 2 vCPU / 4 GB; triagem de intimações, conferência de procuração e guias de convênio.</span></div></div>
+<div class="phase"><div class="tag">Feito</div><div class="d"><strong>Run v1 completo, com dados sintéticos [simulaçêo]</strong><span>Advocacia: acurácia no teste de 72% para 96%, com 1 urgência perdida (meta reprovada). Clínica: de 82% para 96%, zero alarmes perdidos. ONNX int8 de 570 MB, 0,7–1,5 s por mensagem e ~1,2–1,3 GB de RAM por nicho em 2 threads [medido na GB10, nêo numa VPS]; API e Docker passaram os 9 testes de serviço. Detalhes e reprovações em <a href="https://github.com/inematds/jev-open/blob/main/docs/RESULTADOS-v1.md">RESULTADOS-v1.md</a>.</span></div></div>
+<div class="phase"><div class="tag">Próximo</div><div class="d"><strong>Dados reais anonimizados + limiar calibrado</strong><span>Mensagens reais com autorizaçêo, anotadas por duas pessoas; raia OOD de outro escritório ou clínica; limiar de confiança por pergunta calibrado no dev; metas verificadas de verdade.</span></div></div>
+<div class="phase"><div class="tag">Depois</div><div class="d"><strong>VPS real e novas tarefas</strong><span>Latência e RAM numa VPS de 2 vCPU / 4 GB; triagem de intimações, conferência de procuraçêo e guias de convênio.</span></div></div>
 </div></section>
 <footer>
 <div class="wrap">
 <div class="pill">Python</div><div class="pill">transformers · ONNX Runtime</div><div class="pill">bge-m3 / mDeBERTa NLI</div><div class="pill">Docker</div>
-<p style="margin-top:18px">jev-open · projeto de pesquisa e educação, independente do Jev ·
+<p style="margin-top:18px">jev-open · projeto de pesquisa e educaçêo, independente do Jev ·
       <a href="https://github.com/inematds/jev-open">inematds/jev-open</a> ·
       <a href="https://inema.club">INEMA.CLUB</a></p>
 </div>

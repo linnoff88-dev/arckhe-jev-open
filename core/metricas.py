@@ -2,7 +2,7 @@
 
 
 def macro_f1(gold, pred, n=3):
-    """Média do F1 dos rótulos presentes no gabarito ou na previsão (ausente dos dois não conta)."""
+    """Média do F1 dos rótulos presentes no gabarito ou na previsêo (ausente dos dois nêo conta)."""
     f1s = []
     for c in range(n):
         tp = sum(g == c and p == c for g, p in zip(gold, pred))
